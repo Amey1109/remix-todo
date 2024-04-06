@@ -1,7 +1,7 @@
 // root.tsx
 import React, { useContext, useEffect } from 'react';
 import { withEmotionCache } from '@emotion/react';
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
 import {
   Links,
   LiveReload,
@@ -10,9 +10,9 @@ import {
   Scripts,
   ScrollRestoration,
 } from '@remix-run/react';
-import { MetaFunction, LinksFunction } from '@remix-run/node'; // Depends on the runtime you choose
-
+import { LinksFunction, MetaFunction } from '@remix-run/node'; // Depends on the runtime you choose
 import { ServerStyleContext, ClientStyleContext } from './theme/context';
+import theme from './theme';
 
 export const meta: MetaFunction = () => {
   return [
@@ -71,6 +71,7 @@ const Document = withEmotionCache(
         <body>
           {children}
           <ScrollRestoration />
+          <ColorModeScript initialColorMode={theme.config.initialColorMode} />
           <Scripts />
           <LiveReload />
         </body>
