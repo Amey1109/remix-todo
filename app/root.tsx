@@ -1,7 +1,7 @@
 // root.tsx
 import React, { useContext, useEffect } from 'react';
 import { withEmotionCache } from '@emotion/react';
-import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
+import { Box, ChakraProvider, ColorModeScript } from '@chakra-ui/react';
 import {
   Links,
   LiveReload,
@@ -13,6 +13,7 @@ import {
 import { LinksFunction, MetaFunction } from '@remix-run/node'; // Depends on the runtime you choose
 import { ServerStyleContext, ClientStyleContext } from './theme/context';
 import theme from './theme';
+import Navbar from './components/Navbar';
 
 export const meta: MetaFunction = () => {
   return [
@@ -84,7 +85,12 @@ export default function App() {
   return (
     <Document>
       <ChakraProvider>
-        <Outlet />
+        <header>
+          <Navbar />
+        </header>
+        <Box p={6}>
+          <Outlet />
+        </Box>
       </ChakraProvider>
     </Document>
   );
